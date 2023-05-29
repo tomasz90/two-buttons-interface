@@ -9,7 +9,11 @@ class ButtonsHandler {
 public:
     ButtonsHandler(Button button1, Button button2);
 
-    void setCallbacks(void (*_onPressedButton1)(), void (*_onPressedButton2)(), void (*_onPressedBoth)());
+    void setCallbacks(
+            std::function<void()> _onPressedButton1,
+            std::function<void()> _onPressedButton2,
+            std::function<void()> _onPressedBoth
+    );
     void setDebounceTime(unsigned int time);
     void poll();
 
@@ -19,9 +23,9 @@ private:
     bool bothClicked = false;
     unsigned int debounceTime = 20;
 
-    void (*onPressedButton1)();
-    void (*onPressedButton2)();
-    void (*onPressedBoth)();
+    std::function<void()> onPressedButton1;
+    std::function<void()> onPressedButton2;
+    std::function<void()> onPressedBoth;
 
     bool pollState(Button &button) const;
     void resetState(Button &button) const;

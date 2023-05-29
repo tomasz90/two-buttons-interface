@@ -3,13 +3,13 @@
 ButtonsHandler::ButtonsHandler(Button button1, Button button2) : button1(button1), button2(button2) {}
 
 void ButtonsHandler::setCallbacks(
-        void (*_onPressedButton1)(),
-        void (*_onPressedButton2)(),
-        void (*_onPressedBoth)()) {
+        std::function<void()> _onPressedButton1,
+        std::function<void()> _onPressedButton2,
+        std::function<void()> _onPressedBoth) {
 
-    onPressedButton1 = _onPressedButton1;
-    onPressedButton2 = _onPressedButton2;
-    onPressedBoth = _onPressedBoth;
+    onPressedButton1 = std::move(_onPressedButton1);
+    onPressedButton2 = std::move(_onPressedButton2);
+    onPressedBoth = std::move(_onPressedBoth);
 }
 
 void ButtonsHandler::setDebounceTime(unsigned int time) {
