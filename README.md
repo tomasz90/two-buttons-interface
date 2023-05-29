@@ -12,7 +12,8 @@ Same example in dir examples.
 
 #### PLEASE NOTE: actual callbacks are executed when button is released - this is necessary to be able to handle simultanous click.
 
-```
+```c++
+
 #define NEXT_BUTTON 12
 #define PREVIOUS_BUTTON 13
 
