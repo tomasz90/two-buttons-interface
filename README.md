@@ -5,7 +5,7 @@ Library handles events when pressing buttons. It supports single clicks and simu
 
 Set up is very simple just create two button objects - they need a pin number and mode IN_PULLUP or IN_PULLDOWN - this is based on your wiring, if you connect button to 3.3V - then IN_PULLDOWN, when to ground then IN_PULLUP.
 
-Then buttons need to be passed to ButtonHandler, you need also and create callbacks for actions pressed1, pressed2, pressedBoth.
+Then buttons need to be passed to ButtonHandler, you also need to create callbacks for actions pressed1, pressed2, pressedBoth.
 Inside loop buttonhandler will be listening for button events. Additionally, user can specify different than default debounce time.
 
 Same example in dir examples.
