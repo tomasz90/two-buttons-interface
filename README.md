@@ -1,1 +1,1 @@
-# two-buttons-inteface
+# Two Buttons Interface
