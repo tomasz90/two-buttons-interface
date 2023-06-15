@@ -1,6 +1,6 @@
 {
   "name": "TwoButtonsInterface",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Library handles events when pressing buttons. It supports single clicks and simultaneous clicks of two buttons. It is useful to create simple projects with graphical interface when buttons are used to navigate through menu.",
   "keywords": "button, buttons, debounce, simultaneous, input, IO",
   "repository": {

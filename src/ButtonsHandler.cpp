@@ -12,8 +12,25 @@ void ButtonsHandler::setCallbacks(
     onPressedBoth = std::move(_onPressedBoth);
 }
 
+void ButtonsHandler::setCallbacks(
+        std::function<void()> _onPressedButton1,
+        std::function<void()> _onPressedButton2,
+        std::function<void()> _onPressedBoth,
+        std::function<void()> _onPressedBothLong) {
+
+    onPressedButton1 = std::move(_onPressedButton1);
+    onPressedButton2 = std::move(_onPressedButton2);
+    onPressedBoth = std::move(_onPressedBoth);
+    onPressedBothLong = std::move(_onPressedBothLong);
+    isPressedBothLongSupported = true;
+}
+
 void ButtonsHandler::setDebounceTime(unsigned int time) {
     debounceTime = time;
+}
+
+void ButtonsHandler::setLongPressTime(unsigned int time) {
+    longPressTime = time;
 }
 
 bool ButtonsHandler::pollState(Button &button) const {
@@ -48,6 +65,14 @@ bool ButtonsHandler::wasPressed(Button &button) const {
     return button.state.lastState == PRESSED && button.state.currentState == RELEASED;
 }
 
+bool ButtonsHandler::wasReleased(Button &button) const {
+    return button.state.lastState == RELEASED && button.state.currentState == PRESSED;
+}
+
+bool ButtonsHandler::isLongPressed() const {
+    return millis() - lastStartPressed >= longPressTime && lastStartPressed != 0;
+}
+
 void ButtonsHandler::poll() {
     pollState(button1);
     pollState(button2);
@@ -64,9 +89,16 @@ void ButtonsHandler::poll() {
         } else {
             onPressedButton2();
         }
+    } else if (isPressedBothLongSupported && wasReleased(button1) || wasReleased(button2)) {
+        lastStartPressed = millis();
     } else if (bothClicked && isReleased(button1) && isReleased(button2)) {
         bothClicked = false;
-        onPressedBoth();
+        if (isPressedBothLongSupported && isLongPressed()) {
+            lastStartPressed = 0;
+            onPressedBothLong();
+        } else {
+            onPressedBoth();
+        }
     }
 
     resetState(button1);
