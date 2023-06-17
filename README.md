@@ -28,14 +28,24 @@ void pressed2() { Serial.println("Button2 pressed"); }
 
 void pressedBoth() { Serial.println("Both pressed"); }
 
+void pressedBothLong() { Serial.println("Both Long pressed"); }
+
 
 void setup() {
     Serial.begin(115200);
-    buttonsHandler.setCallbacks(pressed1,pressed2,pressedBoth);
+    buttonsHandler.setCallbacks(pressed1,pressed2,pressedBoth,pressedBothLong);
 }
 
 
 void loop() {
     buttonsHandler.poll();
 }
+```
+
+Additionally user can define debounce time and long press time:
+
+```c++
+    buttonsHandler.setDebounceTime(20);
+    buttonsHandler.setLongPressTime(1000);
+
 ```
