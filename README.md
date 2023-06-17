@@ -1,7 +1,7 @@
 # Two Buttons Interface
 
 
-Library handles events when pressing buttons. It supports single clicks and simultaneous clicks of two buttons. It also contains debouncer. It is useful to create simple projects with graphical interface when buttons are used to navigate through a menu. I was not able to find similar library (that handles simultaneous clicks) so I created this one.
+Library handles events when pressing buttons. It supports single clicks, simultaneous clicks and long simultaneous clicks of two buttons. It also contains debouncer. It is useful to create simple projects with graphical interface when buttons are used to navigate through a menu. I was not able to find similar library (that handles simultaneous clicks) so I created this one.
 
 Set up is very simple just create two button objects - they need a pin number and mode IN_PULLUP or IN_PULLDOWN - this is based on your wiring, if you connect button to 3.3V - then IN_PULLDOWN, when to ground then IN_PULLUP.
 
